@@ -15,12 +15,13 @@ price = [[int(x) for x in y.split(' ')] for y in INPUT[1:]]
 print(price)
 
 n = len(price)
-dp = [[0] * 3 for _ in range(n)]
-dp[0] = price[0]
+dp = [price[0], [0] * 3]
 for i in range(1, n):
-    dp[i][0] = price[i][0] + min(dp[i-1][1], dp[i-1][2])
-    dp[i][1] = price[i][1] + min(dp[i-1][0], dp[i-1][2])
-    dp[i][2] = price[i][2] + min(dp[i-1][0], dp[i-1][1])
+    dp[1][0] = price[i][0] + min(dp[0][1], dp[0][2])
+    dp[1][1] = price[i][1] + min(dp[0][0], dp[0][2])
+    dp[1][2] = price[i][2] + min(dp[0][0], dp[0][1])
+
+    dp[0] = dp[1][:]
 
 result = min(dp[-1])
 print(result)
