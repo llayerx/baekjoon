@@ -1,5 +1,4 @@
 #
-
 import sys
 sys.stdin = open('input.txt')
-INPUT = sys.stdin.readlines()
+INPUT = sys.stdin.read().splitlines()
